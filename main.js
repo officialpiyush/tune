@@ -24,11 +24,10 @@ const fs = require('fs');
 
 const logger = require('./modules/logger')
 
-// Database stuff
-const databaseManager = require('./modules/database-manager')
+require('./modules/database-manager');
 
-const db = databaseManager.init()
-databaseManager.query(db, `SELECT name FROM sqlite_master WHERE type='table' AND name='playing_on'`, [], databaseManager.checkTableExistence, 'playing_on')
+const {getPlayer, exists} = require('./modules/database-manager');
+
 
 class MusicClient extends Client {
 	
